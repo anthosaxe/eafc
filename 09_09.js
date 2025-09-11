@@ -30,3 +30,4 @@ personnes_tab.push(roger);
 console.log(personnes_tab);
 personnes_tab.push(bob);
 console.log(personnes_tab);
+
