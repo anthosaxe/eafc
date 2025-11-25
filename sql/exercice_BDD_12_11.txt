@@ -1,0 +1,104 @@
+Exercice 1 :
+
+select SOCIETE, NO_COMMANDE, DATE_COMMANDE
+from COMMANDES, clients
+where COMMANDES.CODE_CLIENT=CLIENTS.CODE_CLIENT;
+
+Exercice 2 :
+
+1.
+select *
+from clients
+where ville = 'mouscron';
+
+2.
+select *
+from article
+where prix > 15;
+
+3.
+select *
+from article
+where prix BETWEEN 17 ANS 29;
+
+4.
+select *
+from clients
+where nom = 'TOM' AND ville = 'Tournai';
+
+5.
+select *
+from clients
+where telephone IS NULL;
+
+6.
+select *
+from clients
+where ville in ('mouscron', 'tournai', 'courtrai');
+
+7.
+select * 
+from clients
+where nom LIKE b%;
+
+8.
+select * 
+from clients
+where nom LIKE %b;
+
+9.
+select * 
+from clients
+where nom LIKE %b%;
+
+10.
+select nom, prenom
+from clients
+ORDER BY nom ASC;
+
+11.
+select nom, prenom
+from clients
+ORDER BY nom DESC;
+
+Exercice 3 : 
+
+a.
+select nom 
+from jeux_video
+
+b.
+select nom
+from jeux_video
+where prix < 50
+
+c.
+select nom
+from jeux_video 
+ORDER BY nom ASC;
+
+d.
+select *
+from jeux_video
+ORDER BY nbre_joueurs_max DESC;
+
+e.
+select * 
+from jeux_video
+where nbre_joueurs_max >= 4;
+
+f.
+select AVG(prix) as 'prix moyen'
+from jeux_video;
+
+g.
+select AVG(nbre_joueurs_max)
+from jeux_video;
+
+h.
+select *,
+CASE 
+    WHEN console = 'xbox' THEN prix+10
+    ELSE prix
+END as nouveau_prix
+from jeux_video

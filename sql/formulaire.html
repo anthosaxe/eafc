@@ -1,0 +1,150 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Formulaire</title>
+</head>
+
+<body>
+    <form method="post" action="cible.php">
+        <table style="border: solid; padding: 1%;">
+            <tr>
+                <td><label for="">Nom :</label></td>
+                <td><input type="text" maxlength="30" placeholder="D'haene"></td>
+            </tr>
+            <tr>
+                <td><label for="">Prénom :</label></td>
+                <td><input type="text" maxlength="30" placeholder="Anthony"></td>
+            </tr>
+            <tr>
+                <td><label for="">Adresse :</label></td>
+                <td><input type="text" maxlength="50" placeholder="297 rue d'Ormont"></td>
+            </tr>
+            <tr>
+                <td><label for="">Code postal/localité :</label></td>
+                <td><input type="text" placeholder="7500"> <input type="text" placeholder="Kain"></td>
+            </tr>
+            <tr>
+                <td><label for="">Téléphone :</label></td>
+                <td><input type="text" maxlength="20" placeholder="0471417139"></td>
+            </tr>
+            <tr>
+                <td><label for="">Adresse Email :</label></td>
+                <td><input type="text" maxlength="50" placeholder="dhaene.anthony@hotmail.be"></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Valider</button></td>
+                <td><button type="reset">réinitialiser</button></td>
+            </tr>
+        </table>
+    </form>
+
+    <table style="border: solid; padding: 1%;">
+        <tr>
+            <td>
+                <form action="">
+                    <label for="">choisissez votre langue</label>
+                    <select name="" id="">
+                        <option value="Français">Français</option>
+                        <option value="Néerlandais">Néerlandais</option>
+                        <option value="Anglais">Anglais</option>
+                    </select>
+                    <button type="submit">Valider</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <table style="border: solid; padding: 1%; margin-top: 1%;">
+        <tr>
+            <td>
+                <form action="">
+                    <p>Choisissez votre langue</p><br>
+
+                    <input type="radio" name="langue" value="fr" checked>
+                    <label for="">Français</label><br>
+
+                    <input type="radio" name="langue" value="nl">
+                    <label for="">Néerlandais</label><br>
+
+                    <input type="radio" name="langue" value="en">
+                    <label for="">Anglais</label><br><br>
+
+                    <button type="submit">Valider</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <table style="border: solid; padding: 1%; margin-top: 1%;">
+        <tr>
+            <td>
+                <form action="">
+                    <p>Choisissez votre langue</p><br>
+
+                    <input type="checkbox" name="langue" value="fr" checked>
+                    <label for="">Français</label><br>
+
+                    <input type="checkbox" name="langue" value="nl">
+                    <label for="">Néerlandais</label><br>
+
+                    <input type="checkbox" name="langue" value="en">
+                    <label for="">Anglais</label><br><br>
+
+                    <button type="submit">Valider</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <form action="">
+        <table style="border: solid; padding: 1%; margin-top: 1%; width: 50%;">
+            <tr>
+                <td>
+                    <label>Date mémo: </label>
+                    <input type="text" ><br><br>
+
+                    <label>Compte donneur d'ordre: </label>
+                    <select>
+                        <option value="">000-0000005-05</option>
+                    </select><br><br>
+
+                    <label>Nom et adresse du donneur d'ordre: </label><br>
+                    <input type="text" placeholder="Nom"><br>
+                    <input type="text" placeholder="Adresse"><br>
+                    <input type="text" placeholder="Ville / Code postal">
+                </td>
+
+                <td>
+                    <label>Montant: </label>
+                    <input type="text"> EUR<br><br>
+
+                    <label>Compte bénéficiaire: </label>
+                    <input type="text"><br><br>
+
+                    <label>Nom et adresse du bénéficiaire: </label><br>
+                    <input type="text" placeholder="Nom"><br>
+                    <input type="text" placeholder="Adresse"><br>
+                    <input type="text" placeholder="Ville / Code postal">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="">Communication: </label><br>
+                    <textarea name="" id=""></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><button type="submit">Enregistrer</button></td>
+                <td><button type="reset">Initialiser</button></td>
+            </tr>
+        </table>
+    </form>
+
+
+
+
+
+</body>
+
+</html>

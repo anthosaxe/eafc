@@ -1,0 +1,132 @@
+ALGORITHME "calcul aire cercle"
+VARIABLES 
+	rayon :REEL
+	aire  :REEL
+CONSTANTES
+	Pi <- 3.14 :REEL
+DEBUT
+	AFFICHER ("entrez le rayon")
+	LIRE rayon
+	aire <- Pi*(rayon)^2
+	AFFICHER("aire du cercle :"+aire)
+FIN
+	
+	
+ALGORITHME "changer deux valeurs"
+VARIABLES
+	nb1 :ENTIER
+	nb2 :ENTIER
+	nb3 :ENTIER
+DEBUT
+	AFFICHER ("entrez le nb1 : ")
+	LIRE (nb1)
+	AFFICHER ("entrez le nb2 : ")
+	LIRE (nb2)
+	nb3 <- nb2
+	nb2 <- nb1
+	nb1 <- nb3
+	AFFICHER ("nb1 : "+nb1)
+	AFFICHER ("nb2 : "+nb2)
+FIN
+
+
+ALGORITHME "divisible par 3"
+VARIABLES
+	nb :ENTIER
+DEBUT
+	AFFICHER ("entrez un nombre entier :")
+	LIRE(nb)
+	SI (nb mod 3) = 0 ALORS
+		AFFICHER ("votre nombre est divisible par 3")
+	SINON
+		AFFICHER ("votre nombre n'est pas divisible par 3")
+	FINSI
+FIN
+
+ALGORITHME "état par age"
+VARIABLES
+	age :ENTIER
+DEBUT
+	AFFICHER ("entrez l'age :")
+	LIRE(age)
+	AFFICHER (NEWLINE)
+	
+	SI (age >= 0) ET (age <= 3) ALORS
+		AFFICHER ("la personne est un bébé")
+	SINON
+		SI (age >= 4 ) ET (age <= 11) ALORS	
+			AFFICHER ("la personne est un enfant")
+		SINON
+			SI (age >=12) ET (age <= 17) ALORS
+				AFFICHER ("la personne est un ado")
+			SINON
+				AFFICHER ("la personne est adulte")
+			FINSI
+		FINSI
+	FINSI
+FIN
+
+ALGORITHME 'menu selon'
+VARIABLES
+	choix :ENTIER
+	cote_1 :REEL
+	cote_2 :REEL
+	cote_3 :REEL
+	hyp :REEL
+	res :ENTIER
+DEBUT
+	AFFICHER ('choisissez parmis les options 1 ou 2')
+	AFFICHER (NEWLINE)
+	AFFICHER ('1 pour calculer l'hypoténuse à partir de deux cotés')
+	AFFICHER (NEWLINE)
+	AFFICHER ('2 pour vérifier si le triangle est réctange à partir de ses cotés')
+	AFFICHER (NEWLINE)
+
+	LIRE (choix)
+
+	SELON choix	FAIRE
+
+		1 : 
+			AFFICHER('entrez la longeur du premier coté : ')
+			LIRE (cote_1)
+			AFFICHER (NEWLINE)
+			AFFICHER('entrez la longeur du second coté : ')
+			LIRE (cote_2)
+			AFFICHER (NEWLINE)
+			res <- racine(cote_1^2 + cote_2^2)
+			AFFICHER ('l hypothénuse à pour longueur : ')
+			AFFICHER (res)
+			AFFICHER(NEWLINE)
+
+		2 : 
+			AFFICHER('entrez la longeur du premier coté : ')
+			LIRE (cote_1)
+			AFFICHER (NEWLINE)
+			AFFICHER('entrez la longeur du second coté : ')
+			LIRE (cote_2)
+			AFFICHER (NEWLINE)
+			AFFICHER('entrez la longeur du second coté : ')
+			LIRE (cote_3)
+			AFFICHER (NEWLINE)
+
+			SI (cote_1 > cote_2) ET (cote_1 > cote_3) ALORS
+				hyp <- cote_1
+			SINON
+				SI (cote_2 > cote_1) ET (cote_2 > cote_3) ALORS
+					hyp <- cote_2
+				SINON
+					hyp <- cote_3
+				FINSI
+			FINSI
+
+			SI (hyp*hyp = cote1*cote1 + cote2*cote2) Alors
+        		AFFICHER ("Le triangle est rectangle.")
+    		Sinon
+        		AFFICHER ("Le triangle n'est pas rectangle.")
+    		FinSi
+
+		DEFAUT :
+			AFFICHER("choix invalide")
+
+	FINSELON
+FIN
