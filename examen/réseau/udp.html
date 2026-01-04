@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocole UDP - User Datagram Protocol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .section-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 to-emerald-100 min-h-screen">
+    
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl md:text-3xl font-bold text-indigo-600">Protocoles Réseau</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 transition">Accueil</a>
+                    <a href="tcp.html" class="text-gray-700 hover:text-indigo-600 transition">TCP</a>
+                    <a href="udp.html" class="text-green-600 font-semibold border-b-2 border-green-600 pb-1">UDP</a>
+                    <a href="comparaison.html" class="text-gray-700 hover:text-indigo-600 transition">Comparaison</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="index.html" class="block text-gray-700 hover:text-indigo-600 py-2">Accueil</a>
+                <a href="tcp.html" class="block text-gray-700 hover:text-indigo-600 py-2">TCP</a>
+                <a href="udp.html" class="block text-green-600 font-semibold py-2">UDP</a>
+                <a href="comparaison.html" class="block text-gray-700 hover:text-indigo-600 py-2">Comparaison</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="container mx-auto px-4 py-16">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="inline-block bg-white rounded-full p-6 mb-6 shadow-xl">
+                <svg class="w-20 h-20 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+            </div>
+            <h2 class="text-5xl md:text-6xl font-bold text-gray-800 mb-4">
+                UDP
+            </h2>
+            <p class="text-2xl md:text-3xl text-green-600 font-semibold mb-6">
+                User Datagram Protocol
+            </p>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Le protocole rapide et léger pour des communications à faible latence
+            </p>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="container mx-auto px-4 py-12 section-animate">
+        <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <h3 class="text-3xl font-bold text-gray-800 mb-6">
+                Qu'est-ce que UDP ?
+            </h3>
+            <div class="prose max-w-none">
+                <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                    UDP (User Datagram Protocol) est un protocole de transport sans connexion qui privilégie la vitesse et l'efficacité au détriment de la fiabilité. Contrairement à TCP, UDP adopte une approche "fire and forget" (envoyer et oublier) : les données sont envoyées sans établissement de connexion préalable et sans garantie de livraison.
+                </p>
+                <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+                    Développé en 1980 par David P. Reed, UDP est conçu pour les applications où la rapidité prime sur la fiabilité absolue. Il est particulièrement adapté aux transmissions en temps réel où une donnée ancienne devient inutile et où il vaut mieux recevoir les nouvelles données rapidement plutôt que d'attendre la retransmission d'anciennes données perdues.
+                </p>
+                <div class="bg-green-50 p-6 rounded-xl border-l-4 border-green-500 my-6">
+                    <h4 class="text-xl font-bold text-green-800 mb-3">Point Clé</h4>
+                    <p class="text-gray-700">
+                        UDP est idéal pour les applications temps réel comme le streaming vidéo, les jeux en ligne et la VoIP. Dans ces contextes, perdre quelques paquets est préférable à attendre leur retransmission, car un paquet retardé serait de toute façon obsolète. La légèreté d'UDP (seulement 8 octets d'en-tête) minimise l'overhead et maximise la bande passante disponible pour les données utiles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Caractéristiques Section -->
+    <section class="container mx-auto px-4 py-12 section-animate">
+        <div class="max-w-5xl mx-auto">
+            <h3 class="text-3xl font-bold text-center text-gray-800 mb-12">
+                Caractéristiques Principales
+            </h3>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rapidité -->
+                <div class="feature-card bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500"
+                    
+                    
+                    >
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Rapidité</h4>
+                    <p class="text-gray-700">
+                        UDP est significativement plus rapide que TCP car il élimine l'overhead de l'établissement de connexion (pas de three-way handshake), des accusés de réception et des retransmissions. Les datagrammes sont envoyés immédiatement, réduisant drastiquement la latence, ce qui est crucial pour les applications sensibles au temps.
+                    </p>
+                    
+                </div>
+
+                <!-- Sans Connexion -->
+                <div class="feature-card bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500"
+                    
+                    
+                    >
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Sans Connexion</h4>
+                    <p class="text-gray-700">
+                        UDP fonctionne en mode connectionless : aucune connexion n'est établie avant l'envoi des données. Chaque datagramme est indépendant et traité séparément. Il n'y a pas de maintien d'état de connexion, ce qui simplifie considérablement le protocole et réduit l'utilisation des ressources.
+                    </p>
+                    
+                </div>
+
+                <!-- Légèreté -->
+                <div class="feature-card bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500"
+                    
+                    
+                    >
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">En-tête Léger</h4>
+                    <p class="text-gray-700">
+                        L'en-tête UDP ne fait que 8 octets (contre 20 minimum pour TCP), contenant uniquement : port source (2 octets), port destination (2 octets), longueur (2 octets) et checksum (2 octets). Cette simplicité maximise l'efficacité de la bande passante en minimisant les données de contrôle.
+                    </p>
+                    
+                </div>
+
+                <!-- Pas de Garantie -->
+                <div class="feature-card bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500"
+                    
+                    
+                    >
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Pas de Garantie</h4>
+                    <p class="text-gray-700">
+                        UDP n'offre aucune garantie : les datagrammes peuvent être perdus, dupliqués, corrompus ou arriver dans le désordre. C'est un service "best effort" (au mieux) où la responsabilité de gérer ces problèmes incombe à l'application si nécessaire. Cette simplicité permet une transmission ultra-rapide.
+                    </p>
+                    
+                </div>
+
+                <!-- Multicast/Broadcast -->
+                <div class="feature-card bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500"
+                    
+                    
+                    >
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Support Multicast</h4>
+                    <p class="text-gray-700">
+                        UDP supporte nativement le broadcast (diffusion à tous) et le multicast (diffusion à un groupe). Un seul datagramme peut atteindre plusieurs destinataires simultanément, ce qui est impossible avec TCP. Cette capacité est essentielle pour la diffusion vidéo, les jeux multijoueurs et la découverte de services réseau.
+                    </p>
+                    
+                </div>
+
+                <!-- Pas de Contrôle -->
+                <div class="feature-card bg-white rounded-xl shadow-lg p-6 border-t-4 border-green-500"
+                    
+                    
+                    >
+                    <div class="bg-green-100 rounded-full w-16 h-16 flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-3">Pas de Contrôle</h4>
+                    <p class="text-gray-700">
+                        UDP ne dispose d'aucun mécanisme de contrôle de flux ni de congestion. Il envoie les données au rythme de l'application sans se soucier de la capacité du réseau ou du destinataire. Cette absence de régulation permet une transmission immédiate mais nécessite que l'application gère elle-même ces aspects si besoin.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Structure du Datagramme -->
+    <section class="container mx-auto px-4 py-12 section-animate">
+        <div class="max-w-5xl mx-auto bg-gradient-to-br from-green-500 to-green-700 rounded-2xl shadow-2xl p-8 md:p-12 text-white">
+            <h3 class="text-3xl font-bold mb-8 text-center">
+                Structure d'un Datagramme UDP
+            </h3>
+            
+            <div class="bg-white rounded-xl p-8 text-gray-800">
+                <p class="text-lg mb-6 text-gray-700">
+                    L'en-tête UDP est remarquablement compact avec seulement 8 octets, contre 20 octets minimum pour TCP. Cette simplicité se traduit par un traitement plus rapide et moins de données de contrôle à transmettre sur le réseau.
+                </p>
+                
+                <div class="space-y-4">
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-lg mb-2">Port Source (16 bits)</h4>
+                        <p class="text-gray-700">Identifie le port de l'application émettrice. Ce champ est optionnel et peut être mis à zéro si aucune réponse n'est attendue.</p>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-lg mb-2">Port Destination (16 bits)</h4>
+                        <p class="text-gray-700">Spécifie le port de l'application destinataire. Ce champ est obligatoire et permet de router le datagramme vers la bonne application sur l'hôte de destination.</p>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-lg mb-2">Longueur (16 bits)</h4>
+                        <p class="text-gray-700">Indique la longueur totale du datagramme UDP (en-tête + données) en octets. La longueur minimale est de 8 octets (en-tête seul) et la maximale théorique est de 65 535 octets.</p>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-lg mb-2">Checksum (16 bits)</h4>
+                        <p class="text-gray-700">Permet une vérification d'intégrité basique des données. Ce champ est optionnel en IPv4 mais obligatoire en IPv6. Contrairement à TCP, UDP ne retransmet pas les datagrammes corrompus.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-green-100 p-4 rounded-lg">
+                    <p class="text-gray-800">
+                        <strong>Note :</strong> La simplicité de l'en-tête UDP se traduit par un temps de traitement minimal côté système d'exploitation, permettant des débits plus élevés et une latence réduite par rapport à TCP.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cas d'Usage Section -->
+    <section class="container mx-auto px-4 py-12 section-animate">
+        <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <h3 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+                Cas d'Utilisation d'UDP
+            </h3>
+            
+            <div class="space-y-6">
+                <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">
+                        📺 Streaming Vidéo et Audio (VoIP, Visioconférence)
+                    </h4>
+                    <p class="text-gray-700">
+                        Le streaming en direct privilégie la continuité sur la perfection. UDP permet d'afficher les nouvelles images immédiatement sans attendre la retransmission d'images perdues qui seraient de toute façon obsolètes. Une brève pixellisation est préférable à un gel de l'image.
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">
+                        🎮 Jeux en Ligne Multijoueurs
+                    </h4>
+                    <p class="text-gray-700">
+                        Dans les jeux d'action, la position actuelle d'un joueur prime sur sa position d'il y a 100ms. UDP transmet les mises à jour de position instantanément. Si un paquet est perdu, le suivant le remplace, rendant la retransmission inutile et même contre-productive.
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">
+                        🌐 DNS (Domain Name System)
+                    </h4>
+                    <p class="text-gray-700">
+                        Les requêtes DNS sont courtes et simples, généralement résolues en un seul aller-retour. UDP est parfait pour ce cas : pas de connexion à établir, envoi immédiat. Si la réponse n'arrive pas, l'application peut simplement renvoyer la requête.
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">
+                        🔄 DHCP (Dynamic Host Configuration Protocol)
+                    </h4>
+                    <p class="text-gray-700">
+                        DHCP utilise UDP car il doit fonctionner avant même qu'une adresse IP ne soit attribuée. Le broadcast UDP permet de découvrir les serveurs DHCP sans connexion préalable. Le protocole lui-même gère les retransmissions si nécessaire.
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">
+                        📡 Diffusion en Direct et IPTV
+                    </h4>
+                    <p class="text-gray-700">
+                        La télévision par IP diffuse vers des milliers de spectateurs simultanément via multicast UDP. Un seul flux réseau atteint tous les abonnés. TCP serait impossible à utiliser car il nécessiterait une connexion individuelle avec chaque spectateur.
+                    </p>
+                </div>
+
+                <div class="border-l-4 border-green-600 pl-6 py-4 bg-green-50 rounded-r-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">
+                        📊 IoT et Capteurs
+                    </h4>
+                    <p class="text-gray-700">
+                        Les capteurs IoT envoient périodiquement des mesures (température, humidité). Perdre une mesure n'est pas grave car une nouvelle arrivera bientôt. UDP minimise la consommation d'énergie et de bande passante, crucial pour les appareils à batterie.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avantages et Inconvénients Section -->
+    <section class="container mx-auto px-4 py-12 section-animate">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Avantages -->
+                <div class="bg-green-50 rounded-2xl shadow-xl p-8 border-t-4 border-green-500">
+                    <h3 class="text-2xl font-bold text-green-800 mb-6 flex items-center">
+                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Avantages
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2 font-bold">✓</span>
+                            <span class="text-gray-700">Très rapide et faible latence : Idéal pour le temps réel</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2 font-bold">✓</span>
+                            <span class="text-gray-700">Overhead minimal : Seulement 8 octets d'en-tête</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2 font-bold">✓</span>
+                            <span class="text-gray-700">Support broadcast/multicast : Un vers plusieurs simultanément</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2 font-bold">✓</span>
+                            <span class="text-gray-700">Pas d'établissement de connexion : Envoi immédiat</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2 font-bold">✓</span>
+                            <span class="text-gray-700">Simple à implémenter : Moins de complexité système</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Inconvénients -->
+                <div class="bg-red-50 rounded-2xl shadow-xl p-8 border-t-4 border-red-500">
+                    <h3 class="text-2xl font-bold text-red-800 mb-6 flex items-center">
+                        <svg class="w-8 h-8 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        Inconvénients
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2 font-bold">✗</span>
+                            <span class="text-gray-700">Aucune garantie de livraison : Paquets peuvent être perdus</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2 font-bold">✗</span>
+                            <span class="text-gray-700">Pas d'ordre garanti : Datagrammes peuvent arriver désordonnés</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2 font-bold">✗</span>
+                            <span class="text-gray-700">Pas de contrôle de congestion : Peut saturer le réseau</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2 font-bold">✗</span>
+                            <span class="text-gray-700">Possible duplication : Même paquet reçu plusieurs fois</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2 font-bold">✗</span>
+                            <span class="text-gray-700">Application doit gérer les erreurs : Plus de travail développeur</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Section -->
+    <section class="container mx-auto px-4 py-12">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="tcp.html" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition flex items-center">
+                ← TCP
+            </a>
+            <a href="comparaison.html" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition flex items-center">
+                Comparaison →
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg mb-2">Présentation sur les Protocoles de Communication Réseau</p>
+            <p class="text-gray-400 mb-4">[Votre nom] - [Date]</p>
+            <div class="flex justify-center space-x-6">
+                <a href="index.html" class="hover:text-indigo-400 transition">Accueil</a>
+                <a href="tcp.html" class="hover:text-blue-400 transition">TCP</a>
+                <a href="udp.html" class="hover:text-green-400 transition">UDP</a>
+                <a href="comparaison.html" class="hover:text-purple-400 transition">Comparaison</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-animate').forEach(section => {
+            observer.observe(section);
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+            }
+        });
+    </script>
+</body>
+</html>
